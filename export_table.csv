@@ -1,0 +1,17 @@
+,date,amount,unit,flow,purpose,note
+0,2025-05-01,30000000,VND,income,Salary,"Hoạt động nhận lương, phục vụ cho nhu cầu chi tiêu và tiết kiệm."
+1,2025-05-01,5000000,VND,expense,Saving,Hoạt động tiết kiệm tiền từ thu nhập cá nhân. Phục vụ cho nhu cầu tiết kiệm và tích lũy tài sản.
+2,2025-05-02,2200000,VND,expense,Saving,"Hoạt động mua cổ phiếu để đầu tư hoặc tích trữ tài sản, phục vụ cho mục đích tiết kiệm hoặc sinh lợi."
+3,2025-05-01,120000,VND,expense,Education,Hoạt động mua sách cho em bé nhằm phục vụ nhu cầu học tập hoặc giải trí của em bé.
+4,2025-05-02,40000,VND,expense,Necessities,"Hoạt động: Ăn sáng. Phục vụ cho nhu cầu ăn uống, đảm bảo năng lượng cho ngày bắt đầu."
+5,2025-05-03,99000,VND,expense,Necessities,"Hoạt động đi ăn trưa với đồng nghiệp nhằm phục vụ nhu cầu giải trí, gặp gỡ xã hội và đảm bảo cuộc sống hàng ngày."
+6,2025-05-04,500000,VND,expense,Give,"Hoạt động quyên góp 500k cho mặt trận tổ quốc, nhằm mục đích từ thiện hoặc hỗ trợ cộng đồng."
+7,2025-05-08,2000000,VND,expense,Play,"Hoạt động đi concert và mua sticker, phục vụ giải trí và sở thích cá nhân."
+8,2025-05-09,708000,VND,expense,Necessities,Hoạt động mua sắm tại siêu thị để phục vụ nhu cầu tiêu dùng hàng ngày.
+9,2025-05-10,990000,VND,expense,Play,"Hoạt động đi ăn pizza tại quán 4P đẳng cấp, phục vụ cho nhu cầu giải trí, thưởng thức ẩm thực."
+10,2025-05-11,121000,VND,expense,Play,"Hoạt động đi nhà bóng, phục vụ cho nhu cầu giải trí, vui chơi trẻ em."
+11,2025-05-11,2000000,VND,expense,Necessities,"Hoạt động sửa cửa, phục vụ cho nhu cầu sửa chữa và bảo trì nơi ở hoặc công trình."
+12,2025-05-07,451000,VND,expense,Play,Hoạt động mua sắm kính cận bóng đá để phục vụ giải trí hoặc thể thao.
+13,2025-05-11,5000,VND,expense,Necessities,"Hoạt động đi đường gây mất tiền do bất cẩn, phục vụ cho nhu cầu đi lại và di chuyển."
+14,2025-05-08,1800000,VND,expense,Education,Đăng ký khóa học Data Science online để nâng cao kiến thức và kỹ năng trong lĩnh vực công nghệ thông tin.
+15,2025-05-11,300000,VND,expense,Others,"Hoạt động này là bị vợ trấn lột mất 300k, phục vụ cho nhu cầu giải trí hoặc chi tiêu cá nhân trong sinh hoạt hàng ngày."

@@ -16,8 +16,10 @@ import json
 from datetime import datetime
 import sqlite3
 import pandas as pd
+pd.set_option("display.max_columns", None)
 import matplotlib.pyplot as plt
 import seaborn as sns
+import time
 
 #%% I. NoteTakingAgent
 
@@ -71,8 +73,6 @@ class NoteTakingAgent:
         return json.loads(response)
        
         
-
-
 #%% II. DataSaverAgent
 
 class DataSaverAgent:
@@ -109,15 +109,21 @@ class DataSaverAgent:
         sql = "SELECT * FROM personal_fin_data"
         data = pd.read_sql(sql=sql, con=conn)
         
+        data.to_csv('export_table.csv')
+        
         conn.close()
         
         return data
+    
 #%% III. VisualizerAgent
 
 class VisualizingAgent:
     def run(self, data):
         total_income = data.groupby('flow')['amount'].sum()['income']
-        total_expense = data.groupby('flow')['amount'].sum()['expense']
+        try:
+            total_expense = data.groupby('flow')['amount'].sum()['expense']
+        except:
+            total_expense = 0
         tota_remain = total_income - total_expense
         data_remain = pd.DataFrame({
             "date": [datetime.now().date().isoformat()],
@@ -148,7 +154,10 @@ class VisualizingAgent:
         
         ax_sns = sns.barplot(data=data_bar, y='amount', x='purpose', 
                              ax=ax[1])
-        ax[1].bar_label(ax_sns.containers[0])
+        try:
+            ax[1].bar_label(ax_sns.containers[0])
+        except:
+            pass
         ax[1].set_title('Amount of spending')
         ax[1].set_xlabel('Purpose')
         ax[1].set_ylabel('Amount [VND]')
@@ -156,12 +165,35 @@ class VisualizingAgent:
         plt.show()
 
 #%% Multi-agent Activation 
-agents = [NoteTakingAgent(), DataSaverAgent(), VisualizingAgent()]
 
-user_message = "ăn sáng 8/5 hết 10k"
-data = user_message
+def main(user_message):
+    agents = [NoteTakingAgent(), DataSaverAgent(), VisualizingAgent()]
+    
+    data = user_message
+    
+    for agent in agents:
+        data = agent.run(data)
+        print(data)
 
-for agent in agents:
-    data = agent.run(data)
-    print(data)
+mess_chain = [
+    "1/5 nhận lương 30 triệu",
+    "1/5 tiết kiệm 5 triệu",
+    "2/5 mua cổ phiếu 2tr2",
+    "1/5 đi mua sách cho em bé hết 120k",
+    "ăn sáng 2/5 40k",
+    "trưa đi ăn với đồng nghiệp 99k ngày 3/5",
+    "4/5 quyên góp 500k cho mặt trận tổ quốc", 
+    "8/5 đi concert anh trai vượt ngàn anh hai hết 1tr8, mua thêm sticker, tổng hết 2tr",
+    "9/5 đi siêu thị hết 708k",
+    "10/5 đi ăn pizza 4P đẳng sờ cấp hết 990000",
+    "cho con đi nhà bóng hết 121k",
+    "sửa cửa hết 2 triệu",
+    "note cho ngày 7/5 cắt kính cận bóng đá hết 451k",
+    "đi đường rơi mất 5k do bất cẩn",
+    "1tr8 đăng kí khoá học data science online 8/5",
+    "bị vợ trấn lột mất 300k"
+    ]
 
+for user_message in mess_chain:
+    main(user_message)
+    time.sleep(2)
