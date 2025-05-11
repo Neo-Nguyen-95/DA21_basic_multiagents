@@ -14,6 +14,9 @@ api_key = os.getenv("SECRETE_KEY")
 
 import json
 from datetime import datetime
+import sqlite3
+import pandas as pd
+import matplotlib.pyplot as plt
 
 #%% I. NoteTakingAgent
 
@@ -62,21 +65,75 @@ class NoteTakingAgent:
         return json.loads(response)
        
         
-user_message = "Tôi nhận được lương 15 triệu vào ngày 02/05/2025"
+user_message = "du lịch hết 1tr"
 
 note_taker = NoteTakingAgent()
 data = note_taker.run(user_message)
 
 #%% II. DataSaverAgent
 
+class DataSaverAgent:
+    def run(self, data):
+        conn = sqlite3.connect("database.db")
+        cursor = conn.cursor()
+        cursor.execute("""
+                       CREATE TABLE IF NOT EXISTS personal_fin_data(
+                           date TEXT,
+                           amount INT,
+                           unit TEXT,
+                           flow TEXT,
+                           purpose TEXT
+                           )
+                       """)
+        try:
+            cursor.execute("""
+                           INSERT INTO personal_fin_data(date, amount, unit, flow, purpose)
+                           VALUES (?, ?, ?, ?, ?)
+                           """,(
+                           data['date'],
+                           data['amount'],
+                           data['unit'],
+                           data['flow'],
+                           data['purpose']
+                           ))
+        except Exception as e:
+            print("Insert fail because: ", e)
+            
+        conn.commit()
+        conn.close()
 
+data_saver = DataSaverAgent()
+data_saver.run(data)
 
+# Check after load
+conn = sqlite3.connect("database.db")
+sql = "SELECT * FROM personal_fin_data"
+data = pd.read_sql(sql=sql, con=conn)
+print(data)
 
 #%% III. VisualizerAgent
 
+total_income = data.groupby('flow')['amount'].sum()['income']
+total_expense = data.groupby('flow')['amount'].sum()['expense']
+tota_remain = total_income - total_expense
+data_remain = pd.DataFrame({
+    "date": [datetime.now().date().isoformat()],
+    "amount": [tota_remain],
+    "unit": ["VND"],
+    "flow": ["remain"],
+    "purpose": ["Remain"]
+    })
 
+data = pd.concat([data, data_remain], axis="rows")
+data.reset_index(inplace=True, drop=True)
 
+# Expense pie chart
+data_pie = (data[data['flow'] != 'income']
+            .groupby('purpose')['amount'].sum()
+            )
 
+plt.pie(x=data_pie.values, labels=data_pie.index, autopct='%1.1f%%')
+plt.show()
 #%% Multi-agent Activation 
 
 
