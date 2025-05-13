@@ -175,24 +175,29 @@ def main(user_message):
         data = agent.run(data)
         print(data)
 
+# mess_chain = [
+#     "1/5 nhận lương 30 triệu",
+#     "1/5 tiết kiệm 5 triệu",
+#     "2/5 mua cổ phiếu 2tr2",
+#     "1/5 đi mua sách cho em bé hết 120k",
+#     "ăn sáng 2/5 40k",
+#     "trưa đi ăn với đồng nghiệp 99k ngày 3/5",
+#     "4/5 quyên góp 500k cho mặt trận tổ quốc", 
+#     "8/5 đi concert anh trai vượt ngàn anh hai hết 1tr8, mua thêm sticker, tổng hết 2tr",
+#     "9/5 đi siêu thị hết 708k",
+#     "10/5 đi ăn pizza 4P đẳng sờ cấp hết 990000",
+#     "cho con đi nhà bóng hết 121k",
+#     "sửa cửa hết 2 triệu",
+#     "note cho ngày 7/5 cắt kính cận bóng đá hết 451k",
+#     "đi đường rơi mất 5k do bất cẩn",
+#     "1tr8 đăng kí khoá học data science online 8/5",
+#     "bị vợ trấn lột mất 300k"
+#     ]
+
 mess_chain = [
-    "1/5 nhận lương 30 triệu",
-    "1/5 tiết kiệm 5 triệu",
-    "2/5 mua cổ phiếu 2tr2",
-    "1/5 đi mua sách cho em bé hết 120k",
-    "ăn sáng 2/5 40k",
-    "trưa đi ăn với đồng nghiệp 99k ngày 3/5",
-    "4/5 quyên góp 500k cho mặt trận tổ quốc", 
-    "8/5 đi concert anh trai vượt ngàn anh hai hết 1tr8, mua thêm sticker, tổng hết 2tr",
-    "9/5 đi siêu thị hết 708k",
-    "10/5 đi ăn pizza 4P đẳng sờ cấp hết 990000",
-    "cho con đi nhà bóng hết 121k",
-    "sửa cửa hết 2 triệu",
-    "note cho ngày 7/5 cắt kính cận bóng đá hết 451k",
-    "đi đường rơi mất 5k do bất cẩn",
-    "1tr8 đăng kí khoá học data science online 8/5",
-    "bị vợ trấn lột mất 300k"
+    "mua hành 5k"
     ]
+
 
 for user_message in mess_chain:
     main(user_message)
